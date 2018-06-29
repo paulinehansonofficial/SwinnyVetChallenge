@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using SwinnyVetAPI.Models;
+using SwinnyVetAPI.Migrations;
 using SwinnyVetAPI.DAL;
 
 namespace SwinnyVetAPI
@@ -16,10 +17,12 @@ namespace SwinnyVetAPI
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<SwinnyVetContext>(new VetInitialiser());
+            //Database.SetInitializer<SwinnyVetContext>(new VetInitialiser());
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SwinnyVetContext, Configuration>());
             using (var context = new SwinnyVetContext())
             {
-                context.Database.Initialize(true);
+                context.Database.Initialize(false);
             }
 
             AreaRegistration.RegisterAllAreas();

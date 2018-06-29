@@ -21,6 +21,16 @@ namespace SwinnyVetAPI.Controllers
             return View(db.Treatments.ToList());
         }
 
+        //// GET: Treatments by ID
+        //public ActionResult Index(int ID)
+        //{
+        //    var query = db.Treatments
+        //        .Where(p => p.ProcedureID == ID);
+
+        //    return View(query);
+
+        //}
+
         // GET: Treatments/Details/5
         public ActionResult Details(int? id)
         {

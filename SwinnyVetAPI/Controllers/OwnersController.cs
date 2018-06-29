@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using NLog;
 using System.Web.Mvc;
 using SwinnyVetAPI.DAL;
 using SwinnyVetAPI.Models;
@@ -14,6 +15,8 @@ namespace SwinnyVetAPI.Controllers
     public class OwnersController : Controller
     {
         private SwinnyVetContext db = new SwinnyVetContext();
+        public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
 
         // GET: Owners
         public ActionResult Index()
@@ -39,6 +42,7 @@ namespace SwinnyVetAPI.Controllers
         // GET: Owners/Create
         public ActionResult Create()
         {
+            logger.Trace("Looked at create page");
             return View();
         }
 
@@ -49,13 +53,15 @@ namespace SwinnyVetAPI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OwnerID,GivenName,Surname,Phone")] Owner owner)
         {
+
             if (ModelState.IsValid)
             {
                 db.Owners.Add(owner);
                 db.SaveChanges();
+                logger.Trace("New owner created!");
                 return RedirectToAction("Index");
             }
-
+            
             return View(owner);
         }
 
@@ -71,6 +77,7 @@ namespace SwinnyVetAPI.Controllers
             {
                 return HttpNotFound();
             }
+            logger.Trace("Navigated to Edit Page");
             return View(owner);
         }
 
@@ -87,6 +94,7 @@ namespace SwinnyVetAPI.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            logger.Trace("Owner " + owner + " Edited");
             return View(owner);
         }
 

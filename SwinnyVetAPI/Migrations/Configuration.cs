@@ -11,7 +11,8 @@ namespace SwinnyVetAPI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "SwinnyVetAPI.DAL.SwinnyVetContext";
         }
 
@@ -41,7 +42,7 @@ namespace SwinnyVetAPI.Migrations
                 new Pet{PetID=5, Name="Pooper", Type="Dog", OwnerID=3}
             };
 
-            pets.ForEach(p => context.Pets.AddOrUpdate(q => p.PetID, p));
+            pets.ForEach(p => context.Pets.AddOrUpdate(q => q.PetID, p));
             context.SaveChanges();
 
             var procedure = new List<Procedure>
@@ -58,7 +59,7 @@ namespace SwinnyVetAPI.Migrations
                 new Procedure{ProcedureID=10, Description="Examine and Treat Wound", Price=30.00}
             };
 
-            procedure.ForEach(p => context.Procedures.AddOrUpdate(q=> p.ProcedureID, p));
+            procedure.ForEach(p => context.Procedures.AddOrUpdate(q=> q.ProcedureID, p));
             context.SaveChanges();
 
             var treatment = new List<Treatment>

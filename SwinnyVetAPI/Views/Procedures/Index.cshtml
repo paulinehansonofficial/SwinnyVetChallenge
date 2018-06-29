@@ -31,9 +31,12 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProcedureID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ProcedureID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProcedureID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProcedureID }) |
+            @Html.ActionLink("View Instances", "Treatments", new { id=item.ProcedureID})
         </td>
     </tr>
 }
+
+
 
 </table>

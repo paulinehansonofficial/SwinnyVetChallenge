@@ -15,11 +15,21 @@ namespace SwinnyVetAPI.Controllers
     {
         private SwinnyVetContext db = new SwinnyVetContext();
 
+        // GET: Treatments by id
+        public ActionResult Treatments(int? id)
+        {
+            var query = db.Treatments
+                .Where(p => p.ProcedureID == id);
+
+            return View(query);
+        }
+
         // GET: Procedures
         public ActionResult Index()
         {
             return View(db.Procedures.ToList());
         }
+
 
         // GET: Procedures/Details/5
         public ActionResult Details(int? id)
