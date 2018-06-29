@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace SwinnyVetAPI.Models
 {
     public class Treatment
     {
-        int TreatmentID { get; set; }
-        DateTime Date { get; set; }
-        string Notes { get; set; }
-        double PricePaid { get; set; }
-
-        public virtual int PetID { get; set; }
-        public virtual int ProcedureID { get; set; }
+        public int TreatmentID { get; set; }
+        public DateTime Date { get; set; }
+        public string Notes { get; set; }
+        public double PricePaid { get; set; }
+        public int PetID { get; set; }
+        public int ProcedureID { get; set; }
     }
 }

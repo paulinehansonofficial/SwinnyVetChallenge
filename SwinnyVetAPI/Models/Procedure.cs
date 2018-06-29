@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace SwinnyVetAPI.Models
 {
     public class Procedure
     {
-        int ProcedureID { get; set; }
-        string Description { get; set; }
-        double Price { get; set; }
+        public int ProcedureID { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
     }
 }
